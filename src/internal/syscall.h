@@ -27,13 +27,23 @@ hidden long __syscall_ret(unsigned long),
 	__syscall_cp(syscall_arg_t, syscall_arg_t, syscall_arg_t, syscall_arg_t,
 	             syscall_arg_t, syscall_arg_t, syscall_arg_t);
 
-#define __syscall1(n,a) __syscall1(n,__scc(a))
-#define __syscall2(n,a,b) __syscall2(n,__scc(a),__scc(b))
-#define __syscall3(n,a,b,c) __syscall3(n,__scc(a),__scc(b),__scc(c))
-#define __syscall4(n,a,b,c,d) __syscall4(n,__scc(a),__scc(b),__scc(c),__scc(d))
-#define __syscall5(n,a,b,c,d,e) __syscall5(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e))
-#define __syscall6(n,a,b,c,d,e,f) __syscall6(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e),__scc(f))
-#define __syscall7(n,a,b,c,d,e,f,g) __syscall7(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e),__scc(f),__scc(g))
+hidden long __syscall_proxy0(long);
+hidden long __syscall_proxy1(long, long);
+hidden long __syscall_proxy2(long, long, long);
+hidden long __syscall_proxy3(long, long, long, long);
+hidden long __syscall_proxy4(long, long, long, long, long);
+hidden long __syscall_proxy5(long, long, long, long, long, long);
+hidden long __syscall_proxy6(long, long, long, long, long, long, long);
+hidden long __syscall_proxy7(long, long, long, long, long, long, long, long);
+
+#define __syscall0(n) __syscall_proxy0(n)
+#define __syscall1(n,a) __syscall_proxy1(n,__scc(a))
+#define __syscall2(n,a,b) __syscall_proxy2(n,__scc(a),__scc(b))
+#define __syscall3(n,a,b,c) __syscall_proxy3(n,__scc(a),__scc(b),__scc(c))
+#define __syscall4(n,a,b,c,d) __syscall_proxy4(n,__scc(a),__scc(b),__scc(c),__scc(d))
+#define __syscall5(n,a,b,c,d,e) __syscall_proxy5(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e))
+#define __syscall6(n,a,b,c,d,e,f) __syscall_proxy6(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e),__scc(f))
+#define __syscall7(n,a,b,c,d,e,f,g) __syscall_proxy7(n,__scc(a),__scc(b),__scc(c),__scc(d),__scc(e),__scc(f),__scc(g))
 
 #define __SYSCALL_NARGS_X(a,b,c,d,e,f,g,h,n,...) n
 #define __SYSCALL_NARGS(...) __SYSCALL_NARGS_X(__VA_ARGS__,7,6,5,4,3,2,1,0,)
